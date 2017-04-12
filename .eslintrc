@@ -22,7 +22,8 @@
     "quotes": [ 1, "single" ],
     "no-undef": 1,
     "global-strict": 0,
-    "no-extra-semi": 1,
+    "no-extra-semi": 2,
+    "no-multi-spaces": 2,
     "no-underscore-dangle": 0,
     "no-console": 1,
     "no-unused-vars": 1,
@@ -30,6 +31,8 @@
     "no-unreachable": 1,
     "no-alert": 0,
     "react/jsx-uses-react": 1,
-    "react/jsx-uses-vars": 1
+    "react/jsx-uses-vars": 1,
+    "semi": [2, "never"],
+    "block-spacing": [2, "never"]
   }
 }
