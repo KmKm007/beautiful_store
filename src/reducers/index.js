@@ -8,7 +8,8 @@ const initialState = {
   errorMesgArray: [],
   isVoting: null,
   isTeamsLoading: null,
-  isVoterStatusLoading: null
+  isVoterStatusLoading: null,
+  selectedTeamIds: []
 }
 
 function receiveErrorMesg(state, action) {
@@ -22,10 +23,17 @@ function receiveErrorMesg(state, action) {
   return errorMesgArray
 }
 
+function removeErrorMesg(state, errorType) {
+  const errorMesgArray = state.errorMesgArray.filter(e => e.errorType !== errorType)
+  return errorMesgArray
+}
+
 function requestTeams(state) {
+  const errorMesgArray = removeErrorMesg(state, actionTypes.REQUEST_TEAMS_FAILED)
   return {
     ...state,
-    isTeamsLoading: true
+    isTeamsLoading: true,
+    errorMesgArray
   }
 }
 
@@ -46,33 +54,12 @@ function receiveTeamsFailed(state, action) {
   }
 }
 
-function voteForTeams(state) {
-  return {
-    ...state,
-    isVoting: true
-  }
-}
-
-function voteForTeamsSucceed(state) {
-  return {
-    ...state,
-    isVoting: false
-  }
-}
-
-function voteForTeamsFailed(state, action) {
-  const errorMesgArray = receiveErrorMesg(state, action)
-  return {
-    ...state,
-    errorMesgArray,
-    isVoting: false
-  }
-}
-
 function requestVoterStatus(state) {
+  const errorMesgArray = removeErrorMesg(state, actionTypes.RECEIVE_VOTER_STATUS_FAILED)
   return {
     ...state,
-    isVoterStatusLoading: true
+    isVoterStatusLoading: true,
+    errorMesgArray
   }
 }
 
@@ -93,6 +80,49 @@ function receiveVoterStatusFailed(state, action) {
   }
 }
 
+function selectTeam(state, action) {
+  const selectedTeamIds = [...state.selectedTeamIds]
+  selectedTeamIds.push(action.teamId)
+  return {
+    ...state,
+    selectedTeamIds
+  }
+}
+
+function unSelectTeam(state, action) {
+  const id = action.teamId
+  const selectedTeamIds = state.selectedTeamIds.filter(teamId => teamId !== id)
+  return {
+    ...state,
+    selectedTeamIds
+  }
+}
+
+function postVoting(state) {
+  const errorMesgArray = removeErrorMesg(state, actionTypes.POST_VOTING_FAILED)
+  return {
+    ...state,
+    isVoting: true,
+    errorMesgArray
+  }
+}
+
+function postVotingSuccess(state) {
+  return {
+    ...state,
+    isVoting: false
+  }
+}
+
+function postVotingFailed(state, action) {
+  const errorMesgArray = receiveErrorMesg(state, action)
+  return {
+    ...state,
+    errorMesgArray,
+    isVoting: false
+  }
+}
+
 export default function reducers(state = initialState, action) {
   switch(action.type) {
     case actionTypes.REQUEST_TEAMS:
@@ -101,19 +131,39 @@ export default function reducers(state = initialState, action) {
       return receiveTeams(state, action)
     case actionTypes.RECEIVE_TEAMS_FAILED:
       return receiveTeamsFailed(state, action)
-    case actionTypes.VOTE_FOR_TEAMS:
-      return voteForTeams(state)
-    case actionTypes.VOTE_FOR_TEAMS_FAILED:
-      return voteForTeamsFailed(state, action)
-    case actionTypes.VOTE_FOR_TEAMS_SUCCEED:
-      return voteForTeamsSucceed(state)
     case actionTypes.REQUEST_VOTER_STATUS:
       return requestVoterStatus(state)
     case actionTypes.RECEIVE_VOTER_STATUS:
       return receiveVoterStatus(state, action)
     case actionTypes.RECEIVE_VOTER_STATUS_FAILED:
       return receiveVoterStatusFailed(state, action)
+    case actionTypes.SELECT_TEAM:
+      return selectTeam(state, action)
+    case actionTypes.UN_SELECT_TEAM:
+      return unSelectTeam(state, action)
+    case actionTypes.POST_VOTING:
+      return postVoting(state)
+    case actionTypes.POST_VOTING_SUCCESS:
+      return postVotingSuccess(state)
+    case actionTypes.POST_VOTING_FAILED:
+      return postVotingFailed(state, action)
     default:
       return state
+  }
+}
+
+export const getUserIdFromStorage = () => {
+  const userId = localStorage.getItem('userId')
+  if (!userId)
+    return null
+  let userIdUpdateTime = localStorage.getItem('userIdUpdateTime')
+  if (!userIdUpdateTime || isNaN(userIdUpdateTime))
+    return null
+  userIdUpdateTime = parseInt(userIdUpdateTime)
+  const nowTime = Date.now()
+  if (nowTime > userIdUpdateTime && (nowTime - userIdUpdateTime > (3 * 24 * 3600 * 1000))) {
+    return userId
+  } else {
+    return null
   }
 }

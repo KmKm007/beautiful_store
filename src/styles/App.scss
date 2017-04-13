@@ -1,0 +1,161 @@
+/* Base Application Styles */
+$baseColor: #930011;
+body, ul {
+  margin: 0;
+  padding: 0;
+  font-family: "Microsoft yahei";
+}
+
+*{
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: $baseColor;
+  padding: 0 16px;
+}
+
+.body-container {
+  $borderStyle: 10px #e8bf53 solid;
+  flex: 1;
+  background-color: #fdfac4;
+  margin:0 auto;
+  border-left: $borderStyle;
+  border-right: $borderStyle;
+}
+
+.header-img-container {
+  margin-bottom: 1.6rem;
+}
+
+.header-img {
+  width: 106%;
+  margin:0 3% 0 -3%;
+}
+
+.main-container {
+  padding: 0 1rem;
+  margin-bottom: 20px;
+}
+
+.item-container {
+  border-bottom:1px solid #b20000;
+  padding: 1rem 1rem 1.6rem 0;
+}
+
+.item-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.item-header-title-container {
+  display: flex;
+  align-items: center;
+}
+
+.item-header-icon {
+  width: 0.6rem;
+  margin-right: 0.2rem;
+}
+
+.item-header-title {
+  color: #b20000;
+  font-size: 1.4rem;
+}
+
+.item-header-btn {
+  color: #7f0000;
+}
+
+.item-content-container {
+  margin-bottom: 2rem;
+}
+
+.item-content {
+  color: #333333;
+}
+
+.item-foot-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: #49494b;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.vote-count-span {
+  margin-right: 2rem;
+}
+
+.vote-btn-label {
+  margin-right: 0.2rem;
+}
+
+.vote-btn-btn-default, .vote-btn-btn-selected, .vote-btn-btn-disabled {
+  $btnWidth: 1.2rem;
+  width: $btnWidth;
+  height: $btnWidth;
+  border-radius: 1rem;
+}
+
+.vote-btn-btn-default {
+  border: 2px #7f0000 solid;
+}
+
+.vote-btn-btn-disabled {
+  background-color: #888773;
+}
+
+.vote-btn-btn-selected {
+  background-color: #b9000d;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.vote-btn {
+  background-color: #930011;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  color: #fdfac4;
+  font-size: 1rem;
+  border-radius: 0.4rem;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+    padding:0 1rem 0 1rem;
+}
+
+.rule-container {
+  color: #49494b;
+  flex: 1;
+  p {
+    margin: 0.2rem 0;
+  }
+}
+
+.logo-img {
+  width: 6rem;
+}
+
+.alert-title {
+  font-size: 0.5rem;
+}
+
+.sweet-alert button.confirm {
+  color: #dd0000;
+}

@@ -7,6 +7,8 @@ import { createLogger } from 'redux-logger'
 import { Provider } from 'react-redux'
 import reducers from './reducers'
 import Router from './router'
+import './styles/App.scss'
+// import 'vconsole'
 
 const middleWare = [ thunk ]
 if (process.env.NODE_ENV !== 'production') {
