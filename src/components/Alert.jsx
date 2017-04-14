@@ -33,7 +33,7 @@ class Alert extends React.Component {
 
   onCancleClick = () => {
     const container = this.refs.container
-    const classNames = cs('alert-body-container', 'animated', 'fadeOutDownBig', {fadeInDownBig: false})
+    const classNames = cs('alert-body-container', 'animated', 'fadeOutRightBig', {fadeInRightBig: false})
     container.className = classNames
     setTimeout(() => {
       this.props.handleCancle()
@@ -56,7 +56,7 @@ class Alert extends React.Component {
     return (
       <div className="alert-container">
         <div className="overlay-container"></div>
-        <div className="alert-body-container animated fadeInDownBig" ref="container">
+        <div className="alert-body-container animated fadeInRightBig" ref="container">
           <header className="alert-body-header-container">
             <span>请填写员工信息</span>
           </header>
