@@ -40,9 +40,14 @@ class HomePageContainer extends React.Component {
   }
 
   handleFormShow = () => {
-    this.setState({
-      isShowForm: true
-    })
+    const selectedTeamIds = this.props.selectedTeamIds
+    if (selectedTeamIds <= 0) {
+      showErrorMesg('操作错误', '请选择支持对象！')
+    } else {
+      this.setState({
+        isShowForm: true
+      })
+    }
   }
 
 

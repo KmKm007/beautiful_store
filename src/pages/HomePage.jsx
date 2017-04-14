@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import HomePageContainer from '../containers/HomePageContainer'
 // import { getUserIdFromStorage } from '../reducers'
-import * as actions from '../actions'
-import * as actionTypes from '../actionTypes'
+import * as actions from '../Redux/actions'
+import * as actionTypes from '../Redux/actionTypes'
 import 'loaders.css/loaders.css'
 
 class HomePage extends React.Component {

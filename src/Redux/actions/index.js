@@ -1,5 +1,5 @@
 import * as actionTypes from '../actionTypes'
-import { getTeamsRank, postVoting as postVotingAPI } from '../middleWares/api'
+import { getTeamsRank, postVoting as postVotingAPI } from '../../middleWares/api'
 
 export function requestTeams(seasonId) {
   return {
@@ -26,7 +26,7 @@ export function receiveTeams(teams) {
 
 export function receiveTeamsFailed(errorMesg) {
   return {
-    type: actionTypes.REQUEST_TEAMS_FAILED,
+    type: actionTypes.RECEIVE_TEAMS_FAILED,
     errorMesg
   }
 }
@@ -66,7 +66,7 @@ export const beginPostVoting = (userMesg, teamIds) => dispatch => {
   }
   dispatch(postVoting(userMesg, teamIds))
   postVotingAPI(params, () => {
-    dispatch(postVotingSuccess())
+    dispatch(postVotingSuccess(teamIds))
   }, errorMesg => {
     dispatch(postVotingFailed(errorMesg))
   })
@@ -78,8 +78,9 @@ export const postVoting = (userMesg, teamIds) => ({
   teamIds
 })
 
-export const postVotingSuccess = () => ({
-  type: actionTypes.POST_VOTING_SUCCESS
+export const postVotingSuccess = teamIds => ({
+  type: actionTypes.POST_VOTING_SUCCESS,
+  teamIds
 })
 
 export const postVotingFailed = errorMesg => ({

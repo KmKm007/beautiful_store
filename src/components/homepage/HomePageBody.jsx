@@ -20,10 +20,17 @@ const HomePageBody = ({ teams, handleFormShow, handleDetailClick }) => {
                 </div>
               </header>
               <div className="item-content-container">
-                <span className="item-content">{team.title}</span>
+                <div>
+                  <span className="item-content">{team.title}</span>
+                </div>
+                <div className="item-content-voting-mesg-container">
+                  <span>评委得分：{team.otherScore}</span>
+                  <span>网络票数：{team.votingScore}</span>
+                  <span className="vote-count-span">总得分：{team.votingCount}</span>
+                </div>
               </div>
               <footer className="item-foot-container" onClick={() => team.handleClick(team.id)}>
-                <span className="vote-count-span">已获&nbsp;{team.votingCount}&nbsp;票</span>
+
                 <span className="vote-btn-label">投TA一票</span>
                 <span className={team.className}></span>
               </footer>

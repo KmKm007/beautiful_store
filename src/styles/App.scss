@@ -5,6 +5,24 @@ html {
   font-size: 16px;
 }
 
+@media (max-width: 320px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 360px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 376px) and (max-width: 414px) {
+  html {
+    font-size:18px;
+  }
+}
+
 body, ul {
   margin: 0;
   padding: 0;
@@ -89,11 +107,12 @@ ul {
 }
 
 .item-content-container {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .item-content {
   color: #333333;
+  font-size: 1rem;
 }
 
 .item-foot-container {
@@ -105,7 +124,6 @@ ul {
 }
 
 .vote-count-span {
-  margin-right: 2rem;
 }
 
 .vote-btn-label {
@@ -148,7 +166,7 @@ ul {
 .footer {
   display: flex;
   align-items: center;
-    padding:0 1rem 0 1rem;
+  padding:0 1rem 1rem 1rem;
 }
 
 .rule-container {
@@ -157,6 +175,10 @@ ul {
   p {
     margin: 0.2rem 0;
   }
+}
+
+.rule-title {
+  color: #000000;
 }
 
 .logo-img {
@@ -169,4 +191,21 @@ ul {
 
 .sweet-alert button.confirm {
   color: #dd0000;
+}
+
+.logo-container1 {
+  overflow:hidden;
+  width:0px;
+  height:0;
+  margin:0 auto;
+  position:absolute;
+  top:-800px;
+}
+
+.item-content-voting-mesg-container {
+  margin-top: 0.4rem;
+  color: #ff2f3a;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
 }

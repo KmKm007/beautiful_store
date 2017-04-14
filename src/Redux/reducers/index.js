@@ -107,10 +107,22 @@ function postVoting(state) {
   }
 }
 
-function postVotingSuccess(state) {
+function postVotingSuccess(state, actions) {
+  const teamIds = actions.teamIds
+  const teams = state.teams
+  const nextTeams = [...teams]
+  teamIds.map(id => {
+    const index = nextTeams.findIndex(team => team.id === id)
+    if (index >= 0) {
+      nextTeams[index].votingCount++
+    }
+  })
+  nextTeams.sort((a, b) => b.votingCount - a.votingCount)
   return {
     ...state,
-    isVoting: false
+    isVoting: false,
+    teams: nextTeams,
+    selectedTeamIds: initialState.selectedTeamIds
   }
 }
 
@@ -144,7 +156,7 @@ export default function reducers(state = initialState, action) {
     case actionTypes.POST_VOTING:
       return postVoting(state)
     case actionTypes.POST_VOTING_SUCCESS:
-      return postVotingSuccess(state)
+      return postVotingSuccess(state, action)
     case actionTypes.POST_VOTING_FAILED:
       return postVotingFailed(state, action)
     default:

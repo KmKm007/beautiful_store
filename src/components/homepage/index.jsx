@@ -8,6 +8,9 @@ import Alert from '../Alert'
 const HomePageComponent = ({teams, isShowForm, handleFormShow, handleDetailClick, handleFormSubmit, handleFormCancel}) => {
   return (
     <div className="container">
+      <div className="logo-container1">
+        <img src={require('../../images/logo.png')}/>
+      </div>
       <div className="body-container">
         <HomePageHeader />
         <HomePageBody
