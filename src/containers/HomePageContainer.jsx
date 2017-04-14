@@ -53,7 +53,7 @@ class HomePageContainer extends React.Component {
       text: errorMesg,
       type: 'error'
     }, isConfirm => {
-      if (confirm) {
+      if (isConfirm) {
         callback
       }
     })
@@ -78,6 +78,11 @@ class HomePageContainer extends React.Component {
       idcard
     }
     handlePostVoting(userMesg, teamIds)
+  }
+
+  handleDetailClick = detailURL => {
+    if (detailURL)
+      window.location.href = detailURL
   }
 
   render () {
@@ -106,7 +111,7 @@ class HomePageContainer extends React.Component {
             <ul>
               {teams.map((team, index) => (
                 <li className="item-container" key={'team' + index}>
-                  <header className="item-header-container">
+                  <header className="item-header-container" onClick={() => this.handleDetailClick(team.detailURL)}>
                     <div className="item-header-title-container">
                       <img className="item-header-icon" src={icon1}/>
                       <span className="item-header-title">{team.name}</span>

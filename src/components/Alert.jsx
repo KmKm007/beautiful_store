@@ -1,6 +1,8 @@
 import React from 'react'
 import '../styles/alert.scss'
 import PropTypes from 'prop-types'
+import 'animate.css'
+import cs from 'classnames'
 
 class Alert extends React.Component {
 
@@ -30,7 +32,12 @@ class Alert extends React.Component {
   }
 
   onCancleClick = () => {
-    this.props.handleCancle()
+    const container = this.refs.container
+    const classNames = cs('alert-body-container', 'animated', 'fadeOutDownBig', {fadeInDownBig: false})
+    container.className = classNames
+    setTimeout(() => {
+      this.props.handleCancle()
+    }, 500)
   }
 
   onSubmitClick = () => {
@@ -49,7 +56,7 @@ class Alert extends React.Component {
     return (
       <div className="alert-container">
         <div className="overlay-container"></div>
-        <div className="alert-body-container">
+        <div className="alert-body-container animated fadeInDownBig" ref="container">
           <header className="alert-body-header-container">
             <span>请填写员工信息</span>
           </header>
@@ -61,7 +68,7 @@ class Alert extends React.Component {
               <input placeholder="身份证号" ref="idcard"/>
             </div>
             <div className="alert-body-main-tips-container">
-              <span>{this.state.isShowErrorMesg ? '❌ 请填写完整的个人信息' : ''}</span>
+              <span>{this.state.isShowErrorMesg ? '❌ 请填写完整的员工信息' : ''}</span>
             </div>
           </div>
           <footer className="alert-footer-container">

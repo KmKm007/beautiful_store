@@ -1,5 +1,10 @@
 /* Base Application Styles */
 $baseColor: #930011;
+
+html {
+  font-size: 16px;
+}
+
 body, ul {
   margin: 0;
   padding: 0;
@@ -44,6 +49,12 @@ ul {
 .main-container {
   padding: 0 1rem;
   margin-bottom: 20px;
+}
+
+.loader-inner {
+  display: flex;
+  height: 200px;
+  justify-content: center;
 }
 
 .item-container {
@@ -127,7 +138,7 @@ ul {
 
 .vote-btn {
   background-color: #930011;
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1.8rem;
   border: none;
   color: #fdfac4;
   font-size: 1rem;

@@ -5,6 +5,7 @@ import HomePageContainer from '../containers/HomePageContainer'
 // import { getUserIdFromStorage } from '../reducers'
 import * as actions from '../actions'
 import * as actionTypes from '../actionTypes'
+import 'loaders.css/loaders.css'
 
 class HomePage extends React.Component {
 
@@ -35,7 +36,7 @@ class HomePage extends React.Component {
         votingErrorMesg={votingErrorMesg}
         isVoting={isVoting}
       />
-    ) : <div>loading...</div>
+  ) : <div>loading...</div>
   }
 }
 
