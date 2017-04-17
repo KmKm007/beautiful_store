@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const icon1 = require('../../images/icon1.0.png')
 
-const HomePageBody = ({ teams, handleFormShow, handleDetailClick }) => {
+const HomePageBody = ({ teams, isSeasonEnd, handleFormShow, handleDetailClick }) => {
   return (
     <div>
       <div className="main-container">
@@ -29,18 +29,21 @@ const HomePageBody = ({ teams, handleFormShow, handleDetailClick }) => {
                   <span className="vote-count-span">总得分：{team.votingCount}</span>
                 </div>
               </div>
-              <footer className="item-foot-container" onClick={() => team.handleClick(team.id)}>
-
-                <span className="vote-btn-label">投TA一票</span>
-                <span className={team.className}></span>
-              </footer>
+              {isSeasonEnd ? null : (
+                <footer className="item-foot-container" onClick={() => team.handleClick(team.id)}>
+                  <span className="vote-btn-label">投TA一票</span>
+                  <span className={team.className}></span>
+                </footer>
+              )}
             </li>
           ))}
         </ul>
       </div>
-      <div className="btn-container">
-        <button className="vote-btn" onClick={handleFormShow}>马上投票</button>
-      </div>
+      { isSeasonEnd ? null : (
+        <div className="btn-container">
+          <button className="vote-btn" onClick={handleFormShow}>马上投票</button>
+        </div>
+      )}
     </div>
   )
 }

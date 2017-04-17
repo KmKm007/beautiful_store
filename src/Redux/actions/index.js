@@ -10,16 +10,17 @@ export function requestTeams(seasonId) {
 
 export const fetchRequestTeams = seasonId => dispatch => {
   dispatch(requestTeams(seasonId))
-  getTeamsRank(seasonId, dataList => {
-    dispatch(receiveTeams(dataList))
+  getTeamsRank(seasonId, (dataList, isSeasonEnd) => {
+    dispatch(receiveTeams(dataList, isSeasonEnd))
   }, errorMesg => {
     dispatch(receiveTeamsFailed(errorMesg))
   })
 }
 
-export function receiveTeams(teams) {
+export function receiveTeams(teams, isSeasonEnd) {
   return {
     type: actionTypes.RECEIVE_TEAMS,
+    isSeasonEnd,
     teams
   }
 }

@@ -17,7 +17,7 @@ export const getTeamsRank = (seasonid, callback, failCallback) => {
       if (resp.ok && resp.status === 200) {
         resp.json().then(json => {
           if (json.status === 0) {
-            callback(json.dataList)
+            callback(json.dataList, json.isSeasonEnd)
           } else {
             failCallback(json.message)
           }

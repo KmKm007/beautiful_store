@@ -67,23 +67,26 @@ class HomePageContainer extends React.Component {
   }
 
   render () {
-    const { teams, selectedTeamIds, handleSelectTeam, handleUnSelectTeam } = this.props
+    const { teams, selectedTeamIds, handleSelectTeam, handleUnSelectTeam, isSeasonEnd } = this.props
     const length = selectedTeamIds.length
-    teams.map(team => {
-      if (selectedTeamIds.findIndex(id => team.id === id) >= 0) {
-        team.className = 'vote-btn-btn-selected'
-        team.handleClick = handleUnSelectTeam
-      } else {
-        team.className = 'vote-btn-btn-default'
-        team.handleClick = length >= 3 ?
-          () => showErrorMesg('投票失败', '投票数不能超过3个')
-          :
-          handleSelectTeam
-      }
-    })
+    if (!isSeasonEnd) {
+      teams.map(team => {
+        if (selectedTeamIds.findIndex(id => team.id === id) >= 0) {
+          team.className = 'vote-btn-btn-selected'
+          team.handleClick = handleUnSelectTeam
+        } else {
+          team.className = 'vote-btn-btn-default'
+          team.handleClick = length >= 3 ?
+            () => showErrorMesg('投票失败', '投票数不能超过3个')
+            :
+            handleSelectTeam
+        }
+      })
+    }
     return (
       <HomePageComponent
         teams={teams}
+        isSeasonEnd={isSeasonEnd}
         handleFormShow={this.handleFormShow}
         handleDetailClick={this.handleDetailClick}
         handleSubmit={this.handleFormSubmit}

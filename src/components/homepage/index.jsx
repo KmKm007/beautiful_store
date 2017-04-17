@@ -5,16 +5,14 @@ import HomePageBody from './HomePageBody'
 import HomePageFooter from './HomePageFooter'
 import Alert from '../Alert'
 
-const HomePageComponent = ({teams, isShowForm, handleFormShow, handleDetailClick, handleFormSubmit, handleFormCancel}) => {
+const HomePageComponent = ({teams, isSeasonEnd, isShowForm, handleFormShow, handleDetailClick, handleFormSubmit, handleFormCancel}) => {
   return (
     <div className="container">
-      <div className="logo-container1">
-        <img src={require('../../images/logo.png')}/>
-      </div>
       <div className="body-container">
         <HomePageHeader />
         <HomePageBody
           teams={teams}
+          isSeasonEnd={isSeasonEnd}
           handleFormShow={handleFormShow}
           handleDetailClick={handleDetailClick}
         />

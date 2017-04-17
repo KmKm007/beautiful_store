@@ -9,7 +9,8 @@ const initialState = {
   isVoting: null,
   isTeamsLoading: null,
   isVoterStatusLoading: null,
-  selectedTeamIds: []
+  selectedTeamIds: [],
+  isSeasonEnd: null
 }
 
 function receiveErrorMesg(state, action) {
@@ -41,6 +42,7 @@ function receiveTeams(state, action) {
   return {
     ...state,
     teams: action.teams,
+    isSeasonEnd: action.isSeasonEnd,
     isTeamsLoading: false
   }
 }
