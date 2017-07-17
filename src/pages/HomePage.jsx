@@ -10,7 +10,7 @@ import 'loaders.css/loaders.css'
 class HomePage extends React.Component {
 
   static defaultProps = {
-    title: '最美形象分行第一季度评选'
+    title: '最美形象分行第二季度评选'
   }
   static propTypes = {
     fetchRequestTeams: PropTypes.func.isRequired,
